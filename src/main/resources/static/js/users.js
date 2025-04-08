@@ -1,10 +1,9 @@
 addEventListener("DOMContentLoaded", () => {
     getUserList()
 })
-const api_url = "http://localhost:8080/api/users"
 async function getUserList() {
     try {
-        const response = await fetch(api_url)
+        const response = await fetch(api_user)
         if (!response.ok) {
             console.log(response)
             throw new Error(`Response ${response.status}`)
@@ -39,7 +38,7 @@ function edit(o, id) {
 async function fetchEdit(id,o){
     let imie = document.querySelector("#imie").value
     let email = document.querySelector("#email").value
-    const response = await fetch(api_url+`/${id}`,
+    const response = await fetch(api_user+`/${id}`,
         {
             method:"PUT",
             headers: {
@@ -51,7 +50,7 @@ async function fetchEdit(id,o){
     getUserList()
 }
 async function fetchDelete(id){
-    const response = await fetch(api_url+`/${id}`,
+    const response = await fetch(api_user+`/${id}`,
         {
             method: "DELETE"
         }
@@ -72,7 +71,7 @@ async function fetchNewUser(o) {
     let email = o.parentElement.previousElementSibling.firstChild.value
     let imie = o.parentElement.previousElementSibling.previousElementSibling.firstChild.value
     
-    const response = await fetch(api_url,
+    const response = await fetch(api_user,
         {
             method:"POST",
             headers:{

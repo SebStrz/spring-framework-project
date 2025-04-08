@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gra Snake</title>
+    <link rel="stylesheet" href="css/snake.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body class="container-fluid">
+    <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-secondary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Menu</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Tabela Graczy</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Gry</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item"href="spinv.html">Space Invaders</a></li>
+                        <li><a class="dropdown-item" href="waz.html">Snake</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="wyniki.html">Tabela Wyników</a>
+                  </li>
+                </ul>
+                Jesteś użytkownikiem: &MediumSpace;
+                    <select class="d-flex" id="usersSelect" >
+                        <option value="a">a</option>
+                    </select>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="row" style="background-color: black; color: white;">
+        <div id="cords">
+    
+        </div>
+        <div id="gra">
+            
+            <canvas id="snakeGame" width="400" height="400"></canvas>
+        </div>
+        
+    </div>
+    
+    
+    
+    <script src="js/snake.js"></script>
+</body>
+</html>

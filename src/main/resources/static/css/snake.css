@@ -1,0 +1,20 @@
+#gra {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 88vh;
+    background-color: black;
+    overflow: hidden;
+}
+
+
+canvas {
+    border: 2px solid white;
+}
+#cords{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    
+}
