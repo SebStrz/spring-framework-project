@@ -1,13 +1,18 @@
 const canvas = document.getElementById("spaceInvaders");
 const ctx = canvas.getContext("2d");
 
-const playerWidth = 40, playerHeight = 20;
+let playerWidth = 40, playerHeight = 20;
 let playerX = (canvas.width - playerWidth) / 2;
 let bullets = [];
 let enemies = [];
-const enemyWidth = 30, enemyHeight = 20;
+let enemyWidth = 30, enemyHeight = 20;
 let score = 0;
 let isGameOver = false;
+
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    resizeGame()
+})
 
 document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") playerX -= 20;
@@ -15,12 +20,43 @@ document.addEventListener("keydown", (event) => {
     if (event.key === " ") bullets.push({ x: playerX + playerWidth / 2 - 2, y: canvas.height - playerHeight });
 });
 
+window.addEventListener("resize", (event) => {
+    resizeGame()
+})
+
+function resizeGame() {
+    let width = window.innerWidth
+    if( width <= 630 && width > 480){
+        canvas.width = 450
+        canvas.height = 300
+        enemyWidth = 22
+        enemyHeight = 15
+        playerWidth = 30
+        playerHeight = 15
+    } else if ( width <= 480 ){
+        canvas.width = 306
+        canvas.height = 204
+        enemyWidth = 15
+        enemyHeight = 10
+        playerWidth = 20
+        playerHeight = 10
+    } else if ( width > 630 ){
+        canvas.width = 600
+        canvas.height = 400
+        enemyWidth = 30
+        enemyHeight = 20
+        playerWidth = 40
+        playerHeight = 20
+    }
+}
+
 function random(min,max){
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 function spawnEnemies() {
-    let xOffset = random(0,345)
+    let maxOffset = canvas.width - (6*enemyWidth+70)
+    let xOffset = random(0, maxOffset)
     for (let i = 0; i < 6; i++) {
         enemies.push({ x: xOffset + i * (enemyWidth + 10) + 20, y: 30 });
     }
@@ -75,12 +111,13 @@ function update() {
             //location.reload();
         }
     });
+    
     if( enemies.length == 0){
         spawnEnemies()
-    } else if (enemies[0].y > 400 ){
+    } else if (enemies[0].y > canvas.height ){
         enemies = []
     }
-    
+    console.log(enemies[0].y)
     // Wyświetlanie wyniku
     ctx.fillStyle = "white";
     ctx.font = "18px Arial";
@@ -106,7 +143,6 @@ async function gameOver(){
             })
         }
     )
-    alert("Game Over! Twój wynik: " + score)
     
     location.reload()
 }
