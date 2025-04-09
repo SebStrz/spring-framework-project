@@ -2,6 +2,7 @@ const api_user = "http://localhost:8080/api/users"
 const api_score = "http://localhost:8080/api/scores"
 
 addEventListener("DOMContentLoaded", async () => {
+    tableResize()
     let json = await getUsers()
     createUsersSelect(json)
     let usersSelect = document.querySelector("#usersSelect")
@@ -9,8 +10,24 @@ addEventListener("DOMContentLoaded", async () => {
     usersSelect.addEventListener("change", (e) => {
         localStorage.setItem("userid",usersSelect.value)
     })
-    
 })
+window.addEventListener("resize", (event) => {
+    tableResize()
+})
+function tableResize(){
+    if ( window.innerWidth <= 840 ){
+        let elements = document.querySelectorAll(".mx-auto")
+        elements.forEach( (e) => {
+            e.classList.replace("mx-auto","disabled-mx-auto")
+        })
+
+    }else if( window.innerWidth > 840){
+        let elements = document.querySelectorAll(".disabled-mx-auto")
+        elements.forEach( (e) => {
+            e.classList.replace("disabled-mx-auto", "mx-auto")
+        })
+    }
+}
 
 
 async function getUsers(){
